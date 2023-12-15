@@ -30,4 +30,7 @@ Diese Webseite liefert mir Daten über die Stromzufuhr der verschiedenen
 Bereiche, ihrer Kosten und auch prognostizierte Daten darüber, wie die
 Stromverteilung sein wird.
 
-Hallo
+Die Daten, die als zweites angegeben werden, sind die Stromerzeugung in Mega-
+wattstunden.
+
+Die Zahl davor gibt dem Timestamp an.
