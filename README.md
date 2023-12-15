@@ -29,3 +29,5 @@ die Auslese meiner Daten verwenden: https://smard.api.bund.dev
 Diese Webseite liefert mir Daten über die Stromzufuhr der verschiedenen
 Bereiche, ihrer Kosten und auch prognostizierte Daten darüber, wie die
 Stromverteilung sein wird.
+
+Hallo
