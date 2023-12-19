@@ -1,4 +1,13 @@
 import requests
+from datetime import datetime as dt
+numb = 2
+curr_time = dt.now()
 
-r = requests.get('https://smard.api.proxy.bund.dev/app/chart_data/1223/DE/1223_DE_hour_1627250400000.json')
+#for i in range(0, numb):
+    #time_stamp_string = str(time_stamp)
+r = requests.get('https://smard.de/app/chart_data/1223/DE/1223_DE_hour_1702854000000.json')
 print(r.content)
+    #numb += 1
+
+print(int(curr_time.timestamp()))
+print(curr_time)

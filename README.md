@@ -34,3 +34,8 @@ Die Daten, die als zweites angegeben werden, sind die Stromerzeugung in Mega-
 wattstunden.
 
 Die Zahl davor gibt dem Timestamp an.
+
+Wenn man den Link zur Erstellung der Timestamps mithilfe der ersten API so verändert: https://smard.de/app/chart_data/1223/DE/1223_DE_hour_1702854000000.json
+dann kriegt man die aktuelleren Timestamps raus. Diese stehen dann auf einer gesonderten Webseite.
+
+Den letzten Timestamp muss man dann nur noch hinten einfügen und man kriegt gute, aktuelle Werte raus.
