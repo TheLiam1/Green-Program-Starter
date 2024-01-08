@@ -39,3 +39,8 @@ Wenn man den Link zur Erstellung der Timestamps mithilfe der ersten API so verä
 dann kriegt man die aktuelleren Timestamps raus. Diese stehen dann auf einer gesonderten Webseite.
 
 Den letzten Timestamp muss man dann nur noch hinten einfügen und man kriegt gute, aktuelle Werte raus.
+
+Heute habe die Daten in eine Json Datei gespeichert, damit
+ich sie dann später weiterverarbeiten kann.
+
+Ich habe alle wichtigen Kommentare, die mein Vorgehen erklären, in die Python Datei direkt geschrieben.
