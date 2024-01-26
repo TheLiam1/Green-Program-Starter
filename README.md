@@ -44,3 +44,13 @@ Heute habe die Daten in eine Json Datei gespeichert, damit
 ich sie dann später weiterverarbeiten kann.
 
 Ich habe alle wichtigen Kommentare, die mein Vorgehen erklären, in die Python Datei direkt geschrieben.
+
+Ich habe es jetzt geschafft, die wichtigen Werte aus Series in der Kommandozeile übersichtlich anzuzeigen. Diese Werte liegen ja in der Zukunft, also muss ich sie in Variablen speichere, die dann in einer Schleife
+nach der korrekten Zeit abgerufen und benutzt/überprüft werden.
+
+Und ich muss noch die nicht grünen Quellen abrufen, um zu überprüfen, wie hoch der Anteil an grünem Strom ist.
+
+Ich muss jetzt den Fehler beheben, dass bei der zweiten Auslese für den MWh Wert nur ein Timestamp rauskommt. 
+Aber das ist eigentlich sowieso unwichtig, denn wir haben herausgefunden, dass bei der Gesamt prognostizierten Erzeugung
+noch alles andere wie Kohle und so dazukommt. Wir müssen also den Gesamtwert abrufen und dann mit dem Wind etc.
+subtrahieren. Bis zum nächsten Mal, tschau.
