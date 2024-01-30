@@ -4,6 +4,7 @@
 import requests
 from datetime import datetime as dt
 import json
+import module_times_gesamt as mtg
 
 curr_time = dt.now()
 
@@ -12,7 +13,11 @@ Hier werden die Daten angefragt, die die Timestamps für die prognostizierte Erz
 von Wind und Photovoltaik liefern.
 """
 
-r1_times_wind_and_solar = requests.get('https://smard.de/app/chart_data/5097/DE/index_quarterhour.json')
+current_timestamp6 = mtg.current_timestamp6
+
+r2_gesamt = requests.get(f"https://smard.de/app/chart_data/5097/DE/5097_DE_day_{current_timestamp6}.json")
+
+r1_times_wind_and_solar = requests.get('https://smard.de/app/chart_data/5097/DE/index_day.json')
 json.dump(r1_times_wind_and_solar.json(), open("r1_times_wind_and_solar.json", "w"), indent=4)
 
 """
@@ -22,7 +27,7 @@ with open("r1_times_wind_and_solar.json") as file:
     data = json.load(file)
 current_timestamp = data["timestamps"][-1]
 
-r1_times_sonstige = requests.get("https://smard.de/app/chart_data/715/DE/index_quarterhour.json")
+r1_times_sonstige = requests.get("https://smard.de/app/chart_data/715/DE/index_hour.json")
 json.dump(r1_times_sonstige.json(), open("r1_times_sonstige.json", "w"), indent=4)
 
 with open("r1_times_sonstige.json") as file2:
@@ -34,7 +39,7 @@ Dafür wird als Timestamp die Variable genutzt, die wird vorher definiert haben.
 """
 
 
-r2_wind_and_solar = requests.get(f"https://smard.de/app/chart_data/5097/DE/5097_DE_quarterhour_{current_timestamp}.json")
+r2_wind_and_solar = requests.get(f"https://smard.de/app/chart_data/5097/DE/5097_DE_day_{current_timestamp}.json")
 """
 Hier werden eigentlich erst die Daten aus den Anfragen in zwei Dateien gespeichert.
 Ich kann das halt erst hier öffnen, weil die r2 Anfrage unter dem Befehl stehen muss,
@@ -48,7 +53,7 @@ json.dump(r2_wind_and_solar.json(), open("r2_wind_and_solar.json", "w"), indent=
 with open("r2_wind_and_solar.json") as file3:
     data2 = json.load(file3)
 
-r2_sonstige = requests.get(f"https://smard.de/app/chart_data/715/DE/715_DE_quarterhour_{current_timestamp2}.json")
+r2_sonstige = requests.get(f"https://smard.de/app/chart_data/715/DE/715_DE_hour_{current_timestamp2}.json")
 
 json.dump(r2_sonstige.json(), open("r2_sonstige.json", "w"), indent=4)
 
