@@ -54,3 +54,14 @@ Ich muss jetzt den Fehler beheben, dass bei der zweiten Auslese für den MWh Wer
 Aber das ist eigentlich sowieso unwichtig, denn wir haben herausgefunden, dass bei der Gesamt prognostizierten Erzeugung
 noch alles andere wie Kohle und so dazukommt. Wir müssen also den Gesamtwert abrufen und dann mit dem Wind etc.
 subtrahieren. Bis zum nächsten Mal, tschau.
+
+Heute habe ich das Herausfiltern der Gesamt Werte in Module geballert. Um auch Werte herauszubekommen, die tagsüber liegen, muss man einfach weiter zurück
+in den Listen gehen, um ältere Werte zu bekommen und nicht immer nur den letzten. Jetzt muss ich nur noch herausfinden, wie ich den richtigen Timestamp für den richtigen Wert herausbekomme. Ich weiß halt nicht, ob beide Listen bei jeder Anfrage gleich lang sind. Ich schätze mal, dass dem nicht so ist, also muss ich wohl einen Algorithmus programmieren, der das gut schafft. Mir fällt gerade auf, dass ich einfach nur in beiden Listen im Verhältnis gleich lang zurück gehen muss, um die passenden Werte zu finden. Ok, nice und tschau :)
+Auf jeden Fall muss ich jetzt am Tag für jede Viertelstunde überprüfen, wie hoch die Erzeugung des grünem Strom
+ist. Dann überprüfe ich, welcher Wert am höchsten ist und schalte die anderen Programme genau zu dieser Uhrzeit an. Irgendwann kann es dann sogar so weit
+kommen, dass ich gucke, wann es sich langfristig am Besten lohnt, also wo der Verbrauch für mehrere Stunden am niedrigsten 
+ist, falls Programme länger als 15 Minuten dauert. 
+
+Wie ich es mir gerade denke: Ich überprüfe um ein Uhr morgens, wann der Anteil an grünem Strom am höchsten ist. Dazu errechne ich den Anteil an grünem Strom an der
+Gesamterzeugung. Diese Uhrzeit speichere ich dann in eine Variable, die an ein zeitgesteuertes Modul übergeben wird und dieses Modul
+führt die anderen Programme dann zu dieser bestimmten Uhrzeit aus.
