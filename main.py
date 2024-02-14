@@ -1,13 +1,14 @@
 # r1_r2_list = [r1.json(), r2.json()]
 # json.dump(r1_r2_list, open("r1_r2_list.json", "w"), indent=4)
+import subprocess
+
+
 
 import requests
 from datetime import datetime as dt
 import json
 
-import module_give_neueste_MWh_and_right_timestamp_gesamt
 import module_give_neueste_MWh_and_right_timestamp_gesamt as gesamt
-
 
 curr_time = dt.now()
 
@@ -37,8 +38,8 @@ Hier werden dann erst die Daten abgerufen, wann wie viel Wind und Photovoltaik e
 Dafür wird als Timestamp die Variable genutzt, die wird vorher definiert haben.
 """
 
-
-r2_wind_and_solar = requests.get(f"https://smard.de/app/chart_data/5097/DE/5097_DE_quarterhour_{current_timestamp}.json")
+r2_wind_and_solar = requests.get(
+    f"https://smard.de/app/chart_data/5097/DE/5097_DE_quarterhour_{current_timestamp}.json")
 """
 Hier werden eigentlich erst die Daten aus den Anfragen in zwei Dateien gespeichert.
 Ich kann das halt erst hier öffnen, weil die r2 Anfrage unter dem Befehl stehen muss,
@@ -77,6 +78,7 @@ gesamt_liste = []
 finish_counter = 0
 finish_counter3 = 0
 counter2 = 0
+fertige_werte_erzeugung_timestamp = []
 for i in liste:
     pass
     for wert in i:
@@ -87,8 +89,16 @@ for i in liste:
                 pass
             else:
                 fertige_werte_Erzeugung.append(wert)
+                fertige_werte_erzeugung_timestamp.append(gesamt_liste[counter - 2])
+neuester_wert_5097 = fertige_werte_Erzeugung[-1]
+# -1 Wäre hier dann die Erzeugung für 23:45 an diesem Tag
 
-neuester_wert_5097 = fertige_werte_Erzeugung[-72]
+
+def give_erzeugung_5097_zu_uhrzeit(zahl):
+    neuester111_wert_5097 = fertige_werte_Erzeugung[zahl]
+    return neuester111_wert_5097
+
+
 MWh = "/MWh"
 right_time_stamp5 = 0
 print(neuester_wert_5097, MWh)
@@ -114,19 +124,24 @@ for wert in gesamt_liste:
     if counter2 % 2 == 0:
         if wert is None:
             finish_counter3 = counter2
-            right_timestamp5 = gesamt_liste[finish_counter3 - 146]
-            print(f"{right_timestamp5} /Timestamp")
+            right_timestamp5 = gesamt_liste[finish_counter3 - 4]
+            # print(f"{right_timestamp5} /Timestamp")
             break
 
 counter4 = 0
 
-# print(gesamt_liste)
-print(f"{dt.fromtimestamp(right_timestamp5 // 1000)} /Datetime of the Timestamp")
 
-#print("Werte aus series aus der Datei r2_sonstige.json:")
-#print("------------------------------------------------")
-#print("")
-#print(f"{neuester_wert_715} /MWh")
+def give_right_timestamp_zu_uhrzeit_grün():
+    return right_timestamp5
+
+
+# print(gesamt_liste)
+
+
+# print("Werte aus series aus der Datei r2_sonstige.json:")
+# print("------------------------------------------------")
+# print("")
+# print(f"{neuester_wert_715} /MWh")
 
 for wert2 in gesamt_liste2:
     counter4 += 1
@@ -134,13 +149,16 @@ for wert2 in gesamt_liste2:
         if wert2 is None:
             finish_counter10 = counter4
             right_timestamp10 = gesamt_liste2[finish_counter10 - 4]
-            #print(f"{right_timestamp10} /Timestamp")
+            # print(f"{right_timestamp10} /Timestamp")
             break
 
-#print(f"{dt.fromtimestamp(right_timestamp10 // 1000)} /Datetime of the Timestamp")
+print(f"{fertige_werte_erzeugung_timestamp[-1]} /Timestamp")
+print(f"{dt.fromtimestamp(fertige_werte_erzeugung_timestamp[-1] // 1000)} /Datetime of the Timestamp")
+# print(f"{dt.fromtimestamp(right_timestamp10 // 1000)} /Datetime of the Timestamp")
 
-MWh6 = gesamt.neueste_MWh_gesamt_777
-Timestamp8 = gesamt.right_timestamp_8458
+MWh6 = gesamt.give_MWh_gesamt_zu_uhrzeit(-144)
+Timestamp8 = gesamt.fertige_werte_Erzeugung_timestamp[-144]
+# Wenn alles so bleibt, dann ist minus 144 12 an diesem Tag
 date5 = dt.fromtimestamp(Timestamp8 // 1000)
 print("")
 print("Werte aus der Datei module_give_neueste_MWh_and_right_timestamp_gesamt.py")
@@ -149,4 +167,37 @@ print(f"{MWh6} /MWh")
 print(f"{Timestamp8} /Timestamp")
 print(f"{date5} /Datetime of the Timestamp")
 print("")
-print(module_give_neueste_MWh_and_right_timestamp_gesamt.fertige_werte_Erzeugung)
+print(gesamt.fertige_werte_Erzeugung)
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+
+
+def give_anteil_zu_uhrzeit(zahl1_wert):
+    gesamtwert_zu_uhrzeit = gesamt.give_MWh_gesamt_zu_uhrzeit(zahl1_wert)
+    # timestamp_zu_uhrzeit_gesamt = mgn.give_right_timestamp_zu_uhrzeit()
+
+    gruener_wert_zu_uhrzeit = give_erzeugung_5097_zu_uhrzeit(zahl1_wert)
+    # timestamp_zu_uhrzeit_grün = main.give_right_timestamp_zu_uhrzeit_grün()
+
+    anteil_an_grünem_strom = gruener_wert_zu_uhrzeit / gesamtwert_zu_uhrzeit
+    return anteil_an_grünem_strom
+
+
+print(give_anteil_zu_uhrzeit(-1))
+
+import subprocess
+
+# Beispiel: Öffne den Texteditor auf einem Mac
+programm = "open"
+argumente = ["-a", "Microsoft Word"]  # Hier kannst du die Argumente für das Programm anpassen
+
+# Führe das Programm aus
+subprocess.run([programm] + argumente)
+
+# Beispiel: Starten von Notepad unter Windows
+# subprocess.run(["notepad.exe"])

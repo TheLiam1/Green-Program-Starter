@@ -65,3 +65,23 @@ ist, falls Programme länger als 15 Minuten dauert.
 Wie ich es mir gerade denke: Ich überprüfe um ein Uhr morgens, wann der Anteil an grünem Strom am höchsten ist. Dazu errechne ich den Anteil an grünem Strom an der
 Gesamterzeugung. Diese Uhrzeit speichere ich dann in eine Variable, die an ein zeitgesteuertes Modul übergeben wird und dieses Modul
 führt die anderen Programme dann zu dieser bestimmten Uhrzeit aus.
+
+Ich habe es geschafft, den Anteil an grünem Strom im Bundesnetz zu einer bestimmten Uhrzeit anzuzeigen! Jetzt muss ich nur noch das mit zeitgesteuerten Modulen 
+zu bestimmten Uhrzeiten die richtigen Sachen ausführen.
+
+Ich habe gerade gemerkt, dass die Daten von r1_gesamt.json und r1_wind_and_solar.json
+unvollständig sind. Das heißt, sie weisen beide bei den gleichen Timestamps lücken auf, 
+wo keine Daten für Erzeugung in MWh angegeben werden. Den Grund dafür kenne ich nicht,
+doch ich muss einen neunen Weg finden, den richtigen Timestamp für die richtige Erzeugung 
+in MWh herauszubekommen. Vielleicht habe ich Glück und die json Datein haben immer
+gleich viele Zeilen, das würde das Ganze natürlich sehr vereinfachen.
+
+Ich habs geschafft, wenn alles so bleibt, dann ist -144 bei der Gesamt Listen die Erzeugung für 12:00 am selben Tag.
+Bei der Wind and solar liste wäre das -1 für die Erzeugung um 23:45 am selben Tag
+Diese Beobachtung muss ich dann an einem anderen Tag überprüfen, um zu schauen, ob sie immer zutrifft. Wenn nicht, dann wäre das
+so, dass ich mir einen Algorithmus ausdenken muss, der immer die richtige Erzeugung für den jeweiligen Timestamp findet.
+Vielleicht mache ich das auch sowieso, um ganz sicher zu sein. Dann könnte ich für jeden Timestamp, der vorhanden ist, die richtige
+Erzeugung finden. Natürlich müsste ich dann noch überprüfen, ob bei diesem Timestamp der Wert Null ist oder nicht und dann
+
+# einen weiteren Timestamp finden, wo alles passt.
+# ok
