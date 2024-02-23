@@ -1,6 +1,11 @@
 import module_gesamt as mg
 import module_times_gesamt as mtg
 
+"""
+class TotalEnergyProduction:
+    def __init__(self):
+        self.timestamp = mtg.load_timestamps()[-1]
+"""
 right_time = mtg.give_right_timestamp()
 
 data = mg.get_data_out_of_r1_gesamt_json(right_time)
@@ -12,7 +17,6 @@ fertige_werte_Erzeugung = []
 fertige_werte_Erzeugung_timestamp = []
 
 for i in liste:
-    pass
     for wert in i:
         counter += 1
         gesamt_liste.append(wert)
@@ -24,7 +28,7 @@ for i in liste:
                 fertige_werte_Erzeugung_timestamp.append(gesamt_liste[counter - 2])
 
 print(
-    f"Das ist die fertige Werte Erzeug"
+    f"Das ist die fertige Werte Erzeugung"
     f"ng für die Timestamps aus der Datei r1_gesamt als Li"
     f"ste:{fertige_werte_Erzeugung_timestamp}, und der letzte Wert:"
     f"{fertige_werte_Erzeugung_timestamp[-1]}")

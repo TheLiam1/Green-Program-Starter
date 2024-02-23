@@ -14,7 +14,7 @@ to run 24/7 all the time, because they just
 calculate something one time a month.
 The goal of my program now is to boot the program, 
 if it really is in use.
-Additionally my program will check, if the electricity 
+Additionally, my program will check, if the electricity 
 that feeds the program is completely from green resources.
 
 ## Technologien, Bibliotheken und Sprachen, die ich benutzen möchte:
@@ -55,11 +55,11 @@ Aber das ist eigentlich sowieso unwichtig, denn wir haben herausgefunden, dass b
 noch alles andere wie Kohle und so dazukommt. Wir müssen also den Gesamtwert abrufen und dann mit dem Wind etc.
 subtrahieren. Bis zum nächsten Mal, tschau.
 
-Heute habe ich das Herausfiltern der Gesamt Werte in Module geballert. Um auch Werte herauszubekommen, die tagsüber liegen, muss man einfach weiter zurück
-in den Listen gehen, um ältere Werte zu bekommen und nicht immer nur den letzten. Jetzt muss ich nur noch herausfinden, wie ich den richtigen Timestamp für den richtigen Wert herausbekomme. Ich weiß halt nicht, ob beide Listen bei jeder Anfrage gleich lang sind. Ich schätze mal, dass dem nicht so ist, also muss ich wohl einen Algorithmus programmieren, der das gut schafft. Mir fällt gerade auf, dass ich einfach nur in beiden Listen im Verhältnis gleich lang zurück gehen muss, um die passenden Werte zu finden. Ok, nice und tschau :)
-Auf jeden Fall muss ich jetzt am Tag für jede Viertelstunde überprüfen, wie hoch die Erzeugung des grünem Strom
+Heute habe ich das Herausfiltern der Gesamtwerte in Module geballert. Um auch Werte herauszubekommen, die tagsüber liegen, muss man einfach weiter zurück
+in den Listen gehen, um ältere Werte zu bekommen und nicht immer nur den letzten. Jetzt muss ich nur noch herausfinden, wie ich den richtigen Timestamp für den richtigen Wert herausbekomme. Ich weiß halt nicht, ob beide Listen bei jeder Anfrage gleich lang sind. Ich schätze mal, dass dem nicht so ist, also muss ich wohl einen Algorithmus programmieren, der das gut schafft. Mir fällt gerade auf, dass ich einfach nur in beiden Listen im Verhältnis gleich lang zurückgehen muss, um die passenden Werte zu finden. Ok, nice und tschau :)
+auf jeden Fall muss ich jetzt am Tag für jede Viertelstunde überprüfen, wie hoch die Erzeugung des grünen Stroms
 ist. Dann überprüfe ich, welcher Wert am höchsten ist und schalte die anderen Programme genau zu dieser Uhrzeit an. Irgendwann kann es dann sogar so weit
-kommen, dass ich gucke, wann es sich langfristig am Besten lohnt, also wo der Verbrauch für mehrere Stunden am niedrigsten 
+kommen, dass ich gucke, wann es sich langfristig am besten lohnt, also wo der Verbrauch für mehrere Stunden am niedrigsten 
 ist, falls Programme länger als 15 Minuten dauert. 
 
 Wie ich es mir gerade denke: Ich überprüfe um ein Uhr morgens, wann der Anteil an grünem Strom am höchsten ist. Dazu errechne ich den Anteil an grünem Strom an der
@@ -68,20 +68,23 @@ führt die anderen Programme dann zu dieser bestimmten Uhrzeit aus.
 
 Ich habe es geschafft, den Anteil an grünem Strom im Bundesnetz zu einer bestimmten Uhrzeit anzuzeigen! Jetzt muss ich nur noch das mit zeitgesteuerten Modulen 
 zu bestimmten Uhrzeiten die richtigen Sachen ausführen.
+# Ab der Zahl 12 schreibt man Zahlen nicht mehr aus
+Ich habe mein Ziel jetzt eigentlich schon erreicht. Ich kann eine bestimmte Uhrzeit eingeben, zu der die
+Funktion aufgerufen wird, die mir den größten Anteil an grünem Strom im Bundesnetz zu der passenden Uhrzeit angibt.
+Ich habe nur noch Probleme damit, Programme auf meinem Macbook mithilfe von Python auszuführen, aber das wird
+sich schon noch ergeben. 
+Was ich jetzt noch machen könnte:
+- das Programm ordentlich aufräumen und alles in Module ballern
+- programmieren, dass man eine Zeit eingeben kann, nach der das Programm
+wieder ausgeschaltet wird
+- wenn das Programm länger als 15 Minuten an sein soll, muss ich überprüfen,
+welche Zeiten sich hintereinander am meisten lohnen
+- und irgendwann kann ich zum Spaß eine Benutzeroberfläche gestalten, mit der man
+alle Sachen, die variabel sind, dann anschaulich eingeben kann
+- so etwas ist jedoch nicht zwingend nötig, da ja nur ich mein Programm fürs Erste starten
+muss und weiß, wo man welche Zahlen eingeben muss
+- oder man gibt die Daten, die man herausbekommt, auf einer Webseite schön aus, die jeder aufrufen kann
 
-Ich habe gerade gemerkt, dass die Daten von r1_gesamt.json und r1_wind_and_solar.json
-unvollständig sind. Das heißt, sie weisen beide bei den gleichen Timestamps lücken auf, 
-wo keine Daten für Erzeugung in MWh angegeben werden. Den Grund dafür kenne ich nicht,
-doch ich muss einen neunen Weg finden, den richtigen Timestamp für die richtige Erzeugung 
-in MWh herauszubekommen. Vielleicht habe ich Glück und die json Datein haben immer
-gleich viele Zeilen, das würde das Ganze natürlich sehr vereinfachen.
-
-Ich habs geschafft, wenn alles so bleibt, dann ist -144 bei der Gesamt Listen die Erzeugung für 12:00 am selben Tag.
-Bei der Wind and solar liste wäre das -1 für die Erzeugung um 23:45 am selben Tag
-Diese Beobachtung muss ich dann an einem anderen Tag überprüfen, um zu schauen, ob sie immer zutrifft. Wenn nicht, dann wäre das
-so, dass ich mir einen Algorithmus ausdenken muss, der immer die richtige Erzeugung für den jeweiligen Timestamp findet.
-Vielleicht mache ich das auch sowieso, um ganz sicher zu sein. Dann könnte ich für jeden Timestamp, der vorhanden ist, die richtige
-Erzeugung finden. Natürlich müsste ich dann noch überprüfen, ob bei diesem Timestamp der Wert Null ist oder nicht und dann
-
-# einen weiteren Timestamp finden, wo alles passt.
-# ok
+Ich habe gerade gemerkt, dass ca. um 18:45 oder noch früher schon die Daten für den nächsten Tag
+ausgegeben werden. Aber das ist ja nicht weiter schlimm, da ich meine Funktion
+ja schon um 01:00 Uhr ausführe und die Zeit wird dann fest gespeichert. Das passt also. Supi dupi tschau! :)

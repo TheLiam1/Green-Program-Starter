@@ -3,8 +3,8 @@ import main
 
 
 # Ich brauche jetzt nur noch den Gesamtwert abzurufen um einer bestimmten Uhrzeit
-# Und dann den Grünstromwert abrufen um einer bestimmten Uhrzeit
-# Dann den Anteil des grünen Stromes am Gesamtwert berechnen
+# und dann den Grünstromwert abrufen um einer bestimmten Uhrzeit
+# dann den Anteil des grünen Stromes am Gesamtwert berechnen
 
 def give_anteil_zu_uhrzeit(zahl1_wert):
     gesamtwert_zu_uhrzeit = mgn.give_MWh_gesamt_zu_uhrzeit(zahl1_wert)
